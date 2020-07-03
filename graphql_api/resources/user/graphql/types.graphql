@@ -1,0 +1,22 @@
+"""
+Khai báo type
+"""
+
+type User {
+    user_id: ID!
+    username: String!
+    password: String!
+    email: String!
+    phone: String
+    first_name: String
+    last_name: String
+    group_id: Group
+    root_id: User
+    is_root: Boolean!
+}
+
+type UserPayload {
+    status: Boolean!
+    message: String!
+    user: User
+}

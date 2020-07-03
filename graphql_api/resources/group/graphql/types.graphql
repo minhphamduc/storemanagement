@@ -1,0 +1,15 @@
+"""
+Khai báo type
+"""
+
+type Group {
+    group_id: ID!
+    name: String!
+    permission: [String!]
+}
+
+type GroupPayload {
+    status: Boolean!
+    message: String!
+    group: Group
+}

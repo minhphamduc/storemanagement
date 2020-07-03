@@ -1,0 +1,8 @@
+"""
+Khai báo input
+"""
+
+input GroupInput {
+    name: String!
+    permission: [String!]
+}

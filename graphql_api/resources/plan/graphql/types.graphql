@@ -1,0 +1,20 @@
+"""
+Khai báo type
+"""
+
+type Plan {
+    plan_id: ID!
+    name: String!
+    max_facebook: Int!
+    max_instagram: Int!
+    max_tiki: Int!
+    max_lazada: Int!
+    max_shopee: Int!
+    period: Int!
+}
+
+type PlanPayload {
+    status: Boolean!
+    message: String!
+    plan: Plan
+}

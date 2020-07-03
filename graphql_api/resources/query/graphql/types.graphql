@@ -1,0 +1,9 @@
+"""
+Khai báo type
+"""
+
+type Query {
+    plan(plan_id: String): Plan
+    group(group_id: String): Group
+    user(user_id: String): User
+}
