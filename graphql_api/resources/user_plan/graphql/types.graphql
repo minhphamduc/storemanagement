@@ -1,0 +1,17 @@
+"""
+Khai báo type
+"""
+
+type UserPlan {
+    user_plan_id: ID!
+    user_id: User!
+    plan_id: Plan!
+    start_at: Datetime!
+    expire_at: Datetime!
+}
+
+type UserPlanPayload {
+    status: Boolean!
+    message: String!
+    user_plan: UserPlan
+}

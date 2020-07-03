@@ -4,6 +4,7 @@ from ariadne import ObjectType
 from graphql_api.resources.plan.models import Plan
 from graphql_api.resources.group.models import Group
 from graphql_api.resources.user.models import User
+from graphql_api.resources.user_plan.models import UserPlan
 
 
 # Khởi tạo mutation ObjectType
@@ -74,5 +75,28 @@ async def resolve_create_user(obj: Any, info: GraphQLResolveInfo, **kwargs) \
                     "user": user}
 
         return {"status": False, "message": "Cannot create user"}
+
+    return {"status": False, "message": "Invalid input"}
+
+
+@mutation.field("createUserPlan")
+async def resolve_create_user(obj: Any, info: GraphQLResolveInfo, **kwargs) \
+        -> Dict[str, Union[bool, str, UserPlan]]:
+    """
+    Hàm resolve createUserPlan
+
+    :param obj:
+    :param info:
+    :param kwargs:
+    :return:
+    """
+    if kwargs and "input" in kwargs:
+        user_plan = UserPlan(**kwargs["input"])
+        result = await user_plan.commit()
+        if result:
+            return {"status": True, "message": "User Plan is created",
+                    "user_plan": user_plan}
+
+        return {"status": False, "message": "Cannot create user plan"}
 
     return {"status": False, "message": "Invalid input"}

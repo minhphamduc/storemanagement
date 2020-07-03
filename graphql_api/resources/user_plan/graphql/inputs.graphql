@@ -1,0 +1,9 @@
+"""
+Khai báo input
+"""
+
+input UserPlanInput {
+    user_id: String!
+    plan_id: String!
+    start_at: String!
+}
