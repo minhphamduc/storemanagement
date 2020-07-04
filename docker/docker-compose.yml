@@ -1,10 +1,20 @@
-version: '3.1'
+version: '3'
 
 services:
 
-  mongo:
-    image: mongo
-    restart: always
+  mongodb:
+    container_name: mongodb
+    image: mongo:latest
+    ports:
+      - "27017:27017"
+    ulimits:
+      nproc: 65535
+      nofile:
+        soft: 20000
+        hard: 40000
+    volumes:
+      - /data/mongodb:/data/db
+      - /data/backup:/data/backup
     environment:
-      MONGO_INITDB_ROOT_USERNAME: root
-      MONGO_INITDB_ROOT_PASSWORD: root
+      - MONGO_INITDB_ROOT_USERNAME=root
+      - MONGO_INITDB_ROOT_PASSWORD=root
