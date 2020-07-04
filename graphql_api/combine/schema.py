@@ -26,17 +26,16 @@ from graphql_api.resources.user_plan.schema import type_schema \
     as user_plan_type_schema
 from graphql_api.resources.user_plan.schema import input_schema \
     as user_plan_input_schema
-from graphql_api.resources.user_plan.schema import scalar_schema \
-    as user_plan_scalar_schema
 from graphql_api.resources.user_plan.resolvers import user_plan
-from graphql_api.resources.user_plan.scalars import datetime_scalar \
-    as user_plan_datetime_scalar
 # Setting Resources
 from graphql_api.resources.setting.schema import type_schema \
     as setting_type_schema
 from graphql_api.resources.setting.schema import input_schema \
     as setting_input_schema
 from graphql_api.resources.setting.resolvers import setting
+# Commons
+from graphql_api.commons.schema import scalar_schema
+from graphql_api.commons.scalars import datetime_scalar
 
 
 # Make schema executable
@@ -45,8 +44,8 @@ schema = make_executable_schema([query_type_schema, mutation_type_schema,
                                  group_type_schema, group_input_schema,
                                  user_type_schema, user_input_schema,
                                  user_plan_type_schema, user_plan_input_schema,
-                                 user_plan_scalar_schema, setting_type_schema,
+                                 scalar_schema, setting_type_schema,
                                  setting_input_schema],
                                 [query, mutation, plan, group, user, user_plan,
                                  setting],
-                                user_plan_datetime_scalar)
+                                datetime_scalar)
