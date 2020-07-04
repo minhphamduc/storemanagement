@@ -14,12 +14,14 @@ user = ObjectType("User")
 async def resolve_user_id(obj: Any, info: GraphQLResolveInfo, **kwargs) \
         -> Optional[str]:
     """
+    Hàm resolve user_id
 
     :param obj:
     :param info:
     :param kwargs:
     :return:
     """
+
     if obj:
         json_data = obj.dump()
         if 'id' in json_data:
@@ -34,12 +36,14 @@ async def resolve_user_id(obj: Any, info: GraphQLResolveInfo, **kwargs) \
 async def resolve_group_id(obj: Any, info: GraphQLResolveInfo, **kwargs) \
         -> Optional[Group]:
     """
+    Hàm resolve group_id
 
     :param obj:
     :param info:
     :param kwargs:
     :return:
     """
+
     if obj and obj.group_id:
         return await obj.group_id.fetch()
 
@@ -50,12 +54,14 @@ async def resolve_group_id(obj: Any, info: GraphQLResolveInfo, **kwargs) \
 async def resolve_root_id(obj: Any, info: GraphQLResolveInfo, **kwargs) \
         -> Optional[User]:
     """
+    Hàm resolve root_id
 
     :param obj:
     :param info:
     :param kwargs:
     :return:
     """
+
     if obj and obj.root_id:
         return await User.find_one({'_id': obj.root_id})
 

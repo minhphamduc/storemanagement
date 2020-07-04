@@ -26,6 +26,7 @@ async def resolve_plan(obj: Any, info: GraphQLResolveInfo, **kwargs) \
     :param kwargs:
     :return:
     """
+
     if 'plan_id' in kwargs:
         return await Plan.find_one({'_id': ObjectId(kwargs['plan_id'])})
 
@@ -46,6 +47,7 @@ async def resolve_group(obj: Any, info: GraphQLResolveInfo, **kwargs) \
     :param kwargs:
     :return:
     """
+
     if 'group_id' in kwargs:
         return await Group.find_one({'_id': ObjectId(kwargs['group_id'])})
 
@@ -66,6 +68,7 @@ async def resolve_user(obj: Any, info: GraphQLResolveInfo, **kwargs) \
     :param kwargs:
     :return:
     """
+
     if 'user_id' in kwargs:
         return await User.find_one({'_id': ObjectId(kwargs['user_id'])})
 
@@ -86,6 +89,7 @@ async def resolve_user_plan(obj: Any, info: GraphQLResolveInfo, **kwargs) \
     :param kwargs:
     :return:
     """
+
     if 'user_plan_id' in kwargs:
         return await UserPlan.find_one({'_id': ObjectId(
             kwargs['user_plan_id']
@@ -108,6 +112,7 @@ async def resolve_setting(obj: Any, info: GraphQLResolveInfo, **kwargs) \
     :param kwargs:
     :return:
     """
+
     if 'setting_id' in kwargs:
         return await Setting.find_one({'_id': ObjectId(
             kwargs['setting_id']

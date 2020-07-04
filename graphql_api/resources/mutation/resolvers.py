@@ -23,6 +23,7 @@ async def resolve_create_plan(obj: Any, info: GraphQLResolveInfo, **kwargs) \
     :param kwargs:
     :return:
     """
+
     if kwargs and "input" in kwargs:
         plan = Plan(**kwargs["input"])
         result = await plan.commit()
@@ -45,6 +46,7 @@ async def resolve_create_group(obj: Any, info: GraphQLResolveInfo, **kwargs) \
     :param kwargs:
     :return:
     """
+
     if kwargs and "input" in kwargs:
         group = Group(**kwargs["input"])
         result = await group.commit()
@@ -68,6 +70,7 @@ async def resolve_create_user(obj: Any, info: GraphQLResolveInfo, **kwargs) \
     :param kwargs:
     :return:
     """
+
     if kwargs and "input" in kwargs:
         user = User(**kwargs["input"])
         result = await user.commit()
@@ -92,6 +95,7 @@ async def resolve_create_user_plan(obj: Any, info: GraphQLResolveInfo,
     :param kwargs:
     :return:
     """
+
     if kwargs and "input" in kwargs:
         user_plan = UserPlan(**kwargs["input"])
         result = await user_plan.commit()
@@ -115,6 +119,7 @@ async def resolve_create_setting(obj: Any, info: GraphQLResolveInfo, **kwargs) \
     :param kwargs:
     :return:
     """
+
     if kwargs and "input" in kwargs:
         setting = Setting(**kwargs["input"])
         result = await setting.commit()

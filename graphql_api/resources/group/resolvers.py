@@ -12,12 +12,14 @@ group = ObjectType("Group")
 async def resolve_group_id(obj: Any, info: GraphQLResolveInfo, **kwargs) \
         -> Optional[str]:
     """
+    Hàm resolve group_id
 
     :param obj:
     :param info:
     :param kwargs:
     :return:
     """
+
     if obj:
         json_data = obj.dump()
         if 'id' in json_data:

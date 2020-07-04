@@ -12,12 +12,14 @@ plan = ObjectType("Plan")
 async def resolve_plan_id(obj: Any, info: GraphQLResolveInfo, **kwargs) \
         -> Optional[str]:
     """
+    Hàm resolve plan_id
 
     :param obj:
     :param info:
     :param kwargs:
     :return:
     """
+
     if obj:
         json_data = obj.dump()
         if 'id' in json_data:

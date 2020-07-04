@@ -14,12 +14,14 @@ user_plan = ObjectType("UserPlan")
 async def resolve_user_plan_id(obj: Any, info: GraphQLResolveInfo, **kwargs) \
         -> Optional[str]:
     """
+    Hàm resolve user_plan_id
 
     :param obj:
     :param info:
     :param kwargs:
     :return:
     """
+
     if obj:
         json_data = obj.dump()
         if 'id' in json_data:
@@ -34,12 +36,14 @@ async def resolve_user_plan_id(obj: Any, info: GraphQLResolveInfo, **kwargs) \
 async def resolve_user_id(obj: Any, info: GraphQLResolveInfo, **kwargs) \
         -> Optional[User]:
     """
+    Hàm resolve user_id
 
     :param obj:
     :param info:
     :param kwargs:
     :return:
     """
+
     if obj and obj.user_id:
         return await obj.user_id.fetch()
 
@@ -50,12 +54,14 @@ async def resolve_user_id(obj: Any, info: GraphQLResolveInfo, **kwargs) \
 async def resolve_plan_id(obj: Any, info: GraphQLResolveInfo, **kwargs) \
         -> Optional[Plan]:
     """
+    Hàm resolve plan_id
 
     :param obj:
     :param info:
     :param kwargs:
     :return:
     """
+
     if obj and obj.plan_id:
         return await obj.plan_id.fetch()
 
