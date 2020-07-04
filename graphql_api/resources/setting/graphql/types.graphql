@@ -12,5 +12,5 @@ type Setting {
 type SettingPayload {
     status: Boolean!
     message: String!
-    setting: Setting
+    data: Setting
 }

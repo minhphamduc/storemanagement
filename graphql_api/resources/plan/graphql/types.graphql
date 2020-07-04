@@ -16,5 +16,5 @@ type Plan {
 type PlanPayload {
     status: Boolean!
     message: String!
-    plan: Plan
+    data: Plan
 }

@@ -11,5 +11,5 @@ type Group {
 type GroupPayload {
     status: Boolean!
     message: String!
-    group: Group
+    data: Group
 }

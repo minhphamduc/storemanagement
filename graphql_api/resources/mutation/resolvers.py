@@ -27,7 +27,7 @@ async def resolve_create_plan(obj: Any, info: GraphQLResolveInfo, **kwargs) \
         plan = Plan(**kwargs["input"])
         result = await plan.commit()
         if result:
-            return {"status": True, "message": "Plan is created", "plan": plan}
+            return {"status": True, "message": "Plan is created", "data": plan}
 
         return {"status": False, "message": "Cannot create plan"}
 
@@ -50,7 +50,7 @@ async def resolve_create_group(obj: Any, info: GraphQLResolveInfo, **kwargs) \
         result = await group.commit()
         if result:
             return {"status": True, "message": "Group is created",
-                    "group": group}
+                    "data": group}
 
         return {"status": False, "message": "Cannot create group"}
 
@@ -73,7 +73,7 @@ async def resolve_create_user(obj: Any, info: GraphQLResolveInfo, **kwargs) \
         result = await user.commit()
         if result:
             return {"status": True, "message": "User is created",
-                    "user": user}
+                    "data": user}
 
         return {"status": False, "message": "Cannot create user"}
 
@@ -97,7 +97,7 @@ async def resolve_create_user_plan(obj: Any, info: GraphQLResolveInfo,
         result = await user_plan.commit()
         if result:
             return {"status": True, "message": "User Plan is created",
-                    "user_plan": user_plan}
+                    "data": user_plan}
 
         return {"status": False, "message": "Cannot create user plan"}
 
@@ -120,7 +120,7 @@ async def resolve_create_setting(obj: Any, info: GraphQLResolveInfo, **kwargs) \
         result = await setting.commit()
         if result:
             return {"status": True, "message": "Setting is created",
-                    "setting": setting}
+                    "data": setting}
 
         return {"status": False, "message": "Cannot create setting"}
 

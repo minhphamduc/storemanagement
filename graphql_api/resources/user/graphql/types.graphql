@@ -18,5 +18,5 @@ type User {
 type UserPayload {
     status: Boolean!
     message: String!
-    user: User
+    data: User
 }

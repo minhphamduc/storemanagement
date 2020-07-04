@@ -13,5 +13,5 @@ type UserPlan {
 type UserPlanPayload {
     status: Boolean!
     message: String!
-    user_plan: UserPlan
+    data: UserPlan
 }
