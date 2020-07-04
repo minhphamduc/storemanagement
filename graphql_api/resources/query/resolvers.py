@@ -6,6 +6,7 @@ from graphql_api.resources.plan.models import Plan
 from graphql_api.resources.group.models import Group
 from graphql_api.resources.user.models import User
 from graphql_api.resources.user_plan.models import UserPlan
+from graphql_api.resources.setting.models import Setting
 
 
 # Khởi tạo query ObjectType
@@ -88,6 +89,28 @@ async def resolve_user_plan(obj: Any, info: GraphQLResolveInfo, **kwargs) \
     if 'user_plan_id' in kwargs:
         return await UserPlan.find_one({'_id': ObjectId(
             kwargs['user_plan_id']
+        )})
+
+    else:
+        return None
+
+
+@query.field("setting")
+async def resolve_setting(obj: Any, info: GraphQLResolveInfo, **kwargs) \
+        -> Optional[Setting]:
+    """
+    Hàm resolve setting
+    Tham số query:
+        - setting_id: ObjectID dạng string
+
+    :param obj:
+    :param info:
+    :param kwargs:
+    :return:
+    """
+    if 'setting_id' in kwargs:
+        return await Setting.find_one({'_id': ObjectId(
+            kwargs['setting_id']
         )})
 
     else:

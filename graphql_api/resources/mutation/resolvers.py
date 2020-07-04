@@ -5,6 +5,7 @@ from graphql_api.resources.plan.models import Plan
 from graphql_api.resources.group.models import Group
 from graphql_api.resources.user.models import User
 from graphql_api.resources.user_plan.models import UserPlan
+from graphql_api.resources.setting.models import Setting
 
 
 # Khởi tạo mutation ObjectType
@@ -80,7 +81,8 @@ async def resolve_create_user(obj: Any, info: GraphQLResolveInfo, **kwargs) \
 
 
 @mutation.field("createUserPlan")
-async def resolve_create_user(obj: Any, info: GraphQLResolveInfo, **kwargs) \
+async def resolve_create_user_plan(obj: Any, info: GraphQLResolveInfo,
+                                   **kwargs) \
         -> Dict[str, Union[bool, str, UserPlan]]:
     """
     Hàm resolve createUserPlan
@@ -98,5 +100,28 @@ async def resolve_create_user(obj: Any, info: GraphQLResolveInfo, **kwargs) \
                     "user_plan": user_plan}
 
         return {"status": False, "message": "Cannot create user plan"}
+
+    return {"status": False, "message": "Invalid input"}
+
+
+@mutation.field("createSetting")
+async def resolve_create_setting(obj: Any, info: GraphQLResolveInfo, **kwargs) \
+        -> Dict[str, Union[bool, str, Setting]]:
+    """
+    Hàm resolve createSetting
+
+    :param obj:
+    :param info:
+    :param kwargs:
+    :return:
+    """
+    if kwargs and "input" in kwargs:
+        setting = Setting(**kwargs["input"])
+        result = await setting.commit()
+        if result:
+            return {"status": True, "message": "Setting is created",
+                    "setting": setting}
+
+        return {"status": False, "message": "Cannot create setting"}
 
     return {"status": False, "message": "Invalid input"}

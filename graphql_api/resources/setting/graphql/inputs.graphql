@@ -1,0 +1,9 @@
+"""
+Khai báo input
+"""
+
+input SettingInput {
+    key: String!
+    value: String!
+    user_id: String!
+}

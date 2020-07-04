@@ -1,0 +1,16 @@
+"""
+Khai báo type
+"""
+
+type Setting {
+    setting_id: ID!
+    key: String!
+    value: String!
+    user_id: User!
+}
+
+type SettingPayload {
+    status: Boolean!
+    message: String!
+    setting: Setting
+}
