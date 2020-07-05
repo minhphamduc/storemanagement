@@ -56,7 +56,3 @@ async def test_dataloader(keys):
 
 # Grab event loop
 loop = asyncio.get_event_loop()
-
-# Make our calls
-loop.run_until_complete(test_dataloader(['5efc7b1ee700be95c679991a',
-                                         '5efc7b90c26c0df544b3c07f']))
