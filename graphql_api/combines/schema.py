@@ -34,8 +34,8 @@ from graphql_api.resources.setting.schema import input_schema \
     as setting_input_schema
 from graphql_api.resources.setting.resolvers import setting
 # Commons
-from graphql_api.commons.schema import scalar_schema
-from graphql_api.commons.scalars import datetime_scalar
+from graphql_api.resources.core.schema import scalar_schema
+from graphql_api.resources.core.scalars import datetime_scalar
 
 
 # Make schema executable
