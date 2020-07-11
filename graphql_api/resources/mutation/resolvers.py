@@ -109,8 +109,10 @@ async def resolve_create_user_plan(obj: Any, info: GraphQLResolveInfo,
 
 
 @mutation.field("createSetting")
-async def resolve_create_setting(obj: Any, info: GraphQLResolveInfo, **kwargs) \
-        -> Dict[str, Union[bool, str, Setting]]:
+async def resolve_create_setting(obj: Any,
+                                 info: GraphQLResolveInfo,
+                                 **kwargs) -> Dict[str,
+                                                   Union[bool, str, Setting]]:
     """
     Hàm resolve createSetting
 
