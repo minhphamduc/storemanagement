@@ -15,7 +15,7 @@ class UserPlan(Document):
                                     document=User)
     plan_id = fields.ReferenceField(required=True,
                                     document=Plan)
-    start_ad = fields.DateTimeField(required=True)
+    start_at = fields.DateTimeField(required=True)
     expire_at = fields.DateTimeField(required=True)
 
     class Meta:
