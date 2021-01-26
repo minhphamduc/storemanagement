@@ -4,6 +4,7 @@ from ariadne import ObjectType
 from graphql_api.resources.plan.models import Plan
 from graphql_api.resources.group.models import Group
 from graphql_api.resources.user.models import User
+from graphql_api.resources.tenant.models import Tenant
 from graphql_api.resources.tenant_plan.models import TenantPlan
 from graphql_api.resources.setting.models import Setting
 
@@ -79,6 +80,30 @@ async def resolve_create_user(obj: Any, info: GraphQLResolveInfo, **kwargs) \
                     "data": user}
 
         return {"status": False, "message": "Cannot create user"}
+
+    return {"status": False, "message": "Invalid input"}
+
+
+@mutation.field("createTenant")
+async def resolve_create_tenant(obj: Any, info: GraphQLResolveInfo, **kwargs) \
+        -> Dict[str, Union[bool, str, Tenant]]:
+    """
+    Hàm resolve createTenant
+
+    :param obj:
+    :param info:
+    :param kwargs:
+    :return:
+    """
+
+    if kwargs and "input" in kwargs:
+        tenant = Tenant(**kwargs["input"])
+        result = await tenant.commit()
+        if result:
+            return {"status": True, "message": "Tenant is created",
+                    "data": tenant}
+
+        return {"status": False, "message": "Cannot create tenant"}
 
     return {"status": False, "message": "Invalid input"}
 
