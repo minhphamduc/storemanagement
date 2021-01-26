@@ -2,6 +2,7 @@ from typing import Any, Optional
 from graphql.type import GraphQLResolveInfo
 from ariadne import ObjectType
 from graphql_api.resources.plan.models import Plan
+from graphql_api.resources.tenant.models import Tenant
 
 
 # Khởi tạo tenant plan ObjectType
@@ -45,5 +46,23 @@ async def resolve_plan_id(obj: Any, info: GraphQLResolveInfo, **kwargs) \
 
     if obj and obj.plan_id:
         return await obj.plan_id.fetch()
+
+    return None
+
+
+@tenant_plan.field("tenant_id")
+async def resolve_tenant_id(obj: Any, info: GraphQLResolveInfo, **kwargs) \
+        -> Optional[Tenant]:
+    """
+    Hàm resolve tenant_id
+
+    :param obj:
+    :param info:
+    :param kwargs:
+    :return:
+    """
+
+    if obj and obj.tenant_id:
+        return await obj.tenant_id.fetch()
 
     return None
