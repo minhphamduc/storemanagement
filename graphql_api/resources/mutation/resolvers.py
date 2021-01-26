@@ -165,19 +165,6 @@ async def resolve_create_tenant(obj: Any, info: GraphQLResolveInfo, **kwargs) \
     """
 
     if kwargs and "input" in kwargs:
-        # Kiểm tra tenant_plan_id
-        if "tenant_plan_id" in kwargs["input"].keys() \
-                and kwargs["input"]["tenant_plan_id"]:
-            tenant_plan = await TenantPlan.find_one(
-                {'_id': ObjectId(kwargs["input"]["tenant_plan_id"])}
-            )
-            if tenant_plan is not None:
-                kwargs["input"]["tenant_plan_id"] = tenant_plan
-
-            # Trả lỗi nếu tenant plan không tồn tại
-            else:
-                return {"status": False, "message": "Tenant Plan not found"}
-
         tenant = Tenant(**kwargs["input"])
         result = await tenant.commit()
         if result:

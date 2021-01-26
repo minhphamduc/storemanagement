@@ -29,21 +29,3 @@ async def resolve_tenant_id(obj: Any, info: GraphQLResolveInfo, **kwargs) \
         return None
 
     return None
-
-
-@tenant.field("tenant_plan_id")
-async def resolve_plan_id(obj: Any, info: GraphQLResolveInfo, **kwargs) \
-        -> Optional[TenantPlan]:
-    """
-    Hàm resolve tenant_plan_id
-
-    :param obj:
-    :param info:
-    :param kwargs:
-    :return:
-    """
-
-    if obj and obj.tenant_plan_id:
-        return await obj.tenant_plan_id.fetch()
-
-    return None

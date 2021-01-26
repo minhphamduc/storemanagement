@@ -16,8 +16,6 @@ class Tenant(Document):
                               )
     description = fields.StringField(validate=[validate.Length(max=255),
                                                validate.Regexp(r"[a-zA-Z ]+")])
-    tenant_plan_id = fields.ReferenceField(required=True,
-                                           document=TenantPlan)
 
     class Meta:
         collection_name = "tenant"
