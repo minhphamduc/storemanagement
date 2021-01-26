@@ -2,7 +2,7 @@
 Khai báo input
 """
 
-input SettingInput {
+input UserSettingInput {
     key: String!
     value: String!
     user_id: String!

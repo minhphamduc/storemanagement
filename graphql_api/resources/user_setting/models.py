@@ -3,12 +3,12 @@ from graphql_api.settings.connects import MONGO_INSTANCE
 from graphql_api.resources.user.models import User
 
 
-# Đăng ký document Setting
+# Đăng ký document UserSetting
 @MONGO_INSTANCE.register
-class Setting(Document):
+class UserSetting(Document):
     """
-    Class: Setting
-    Description: Lớp setting
+    Class: UserSetting
+    Description: Lớp user setting
     """
 
     key = fields.StringField(required=True,
@@ -23,4 +23,4 @@ class Setting(Document):
                                     document=User)
 
     class Meta:
-        collection_name = "setting"
+        collection_name = "user_setting"

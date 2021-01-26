@@ -2,15 +2,15 @@
 Khai báo type
 """
 
-type Setting {
-    setting_id: ID!
+type UserSetting {
+    user_setting_id: ID!
     key: String!
     value: String!
     user_id: User!
 }
 
-type SettingPayload {
+type UserSettingPayload {
     status: Boolean!
     message: String!
-    data: Setting
+    data: UserSetting
 }

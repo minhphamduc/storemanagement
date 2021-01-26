@@ -4,16 +4,17 @@ from ariadne import ObjectType
 from graphql_api.resources.user.models import User
 
 
-# Khởi tạo setting ObjectType
-setting = ObjectType("Setting")
+# Khởi tạo user_setting ObjectType
+user_setting = ObjectType("UserSetting")
 
 
 # Setting resolver
-@setting.field("setting_id")
-async def resolve_setting_id(obj: Any, info: GraphQLResolveInfo, **kwargs) \
+@user_setting.field("user_setting_id")
+async def resolve_user_setting_id(obj: Any, info: GraphQLResolveInfo,
+                                  **kwargs) \
         -> Optional[str]:
     """
-    Hàm resolve setting_id
+    Hàm resolve user_setting_id
 
     :param obj:
     :param info:
@@ -31,7 +32,7 @@ async def resolve_setting_id(obj: Any, info: GraphQLResolveInfo, **kwargs) \
     return None
 
 
-@setting.field("user_id")
+@user_setting.field("user_id")
 async def resolve_user_id(obj: Any, info: GraphQLResolveInfo, **kwargs) \
         -> Optional[User]:
     """

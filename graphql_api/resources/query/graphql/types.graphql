@@ -9,5 +9,5 @@ type Query {
     tenant(tenant_id: String): Tenant
     tenant_setting(tenant_setting_id: String): TenantSetting
     tenant_plan(tenant_plan_id: String): TenantPlan
-    setting(setting_id: String): Setting
+    user_setting(user_setting_id: String): UserSetting
 }

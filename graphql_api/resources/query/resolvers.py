@@ -8,7 +8,7 @@ from graphql_api.resources.user.models import User
 from graphql_api.resources.tenant.models import Tenant
 from graphql_api.resources.tenant_setting.models import TenantSetting
 from graphql_api.resources.tenant_plan.models import TenantPlan
-from graphql_api.resources.setting.models import Setting
+from graphql_api.resources.user_setting.models import UserSetting
 
 
 # Khởi tạo query ObjectType
@@ -78,6 +78,29 @@ async def resolve_user(obj: Any, info: GraphQLResolveInfo, **kwargs) \
         return None
 
 
+@query.field("user_setting")
+async def resolve_user_setting(obj: Any, info: GraphQLResolveInfo, **kwargs) \
+        -> Optional[UserSetting]:
+    """
+    Hàm resolve user_setting
+    Tham số query:
+        - user_setting_id: ObjectID dạng string
+
+    :param obj:
+    :param info:
+    :param kwargs:
+    :return:
+    """
+
+    if 'user_setting_id' in kwargs:
+        return await UserSetting.find_one({'_id': ObjectId(
+            kwargs['user_setting_id']
+        )})
+
+    else:
+        return None
+
+
 @query.field("tenant")
 async def resolve_tenant(obj: Any, info: GraphQLResolveInfo, **kwargs) \
         -> Optional[Tenant]:
@@ -103,7 +126,7 @@ async def resolve_tenant(obj: Any, info: GraphQLResolveInfo, **kwargs) \
 async def resolve_tenant_setting(obj: Any, info: GraphQLResolveInfo, **kwargs) \
         -> Optional[TenantSetting]:
     """
-    Hàm resolve tenant setting
+    Hàm resolve tenant user_setting
     Tham số query:
         - tenant_setting_id: ObjectID dạng string
 
@@ -139,29 +162,6 @@ async def resolve_tenant_plan(obj: Any, info: GraphQLResolveInfo, **kwargs) \
     if 'tenant_plan_id' in kwargs:
         return await TenantPlan.find_one({'_id': ObjectId(
             kwargs['tenant_plan_id']
-        )})
-
-    else:
-        return None
-
-
-@query.field("setting")
-async def resolve_setting(obj: Any, info: GraphQLResolveInfo, **kwargs) \
-        -> Optional[Setting]:
-    """
-    Hàm resolve setting
-    Tham số query:
-        - setting_id: ObjectID dạng string
-
-    :param obj:
-    :param info:
-    :param kwargs:
-    :return:
-    """
-
-    if 'setting_id' in kwargs:
-        return await Setting.find_one({'_id': ObjectId(
-            kwargs['setting_id']
         )})
 
     else:

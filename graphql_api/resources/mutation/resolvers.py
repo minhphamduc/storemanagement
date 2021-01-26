@@ -7,7 +7,7 @@ from graphql_api.resources.user.models import User
 from graphql_api.resources.tenant.models import Tenant
 from graphql_api.resources.tenant_setting.models import TenantSetting
 from graphql_api.resources.tenant_plan.models import TenantPlan
-from graphql_api.resources.setting.models import Setting
+from graphql_api.resources.user_setting.models import UserSetting
 
 
 # Khởi tạo mutation ObjectType
@@ -85,6 +85,33 @@ async def resolve_create_user(obj: Any, info: GraphQLResolveInfo, **kwargs) \
     return {"status": False, "message": "Invalid input"}
 
 
+@mutation.field("createUserSetting")
+async def resolve_create_user_setting(obj: Any,
+                                      info: GraphQLResolveInfo,
+                                      **kwargs) -> Dict[str,
+                                                        Union[bool, str,
+                                                              UserSetting]]:
+    """
+    Hàm resolve createUserSetting
+
+    :param obj:
+    :param info:
+    :param kwargs:
+    :return:
+    """
+
+    if kwargs and "input" in kwargs:
+        user_setting = UserSetting(**kwargs["input"])
+        result = await user_setting.commit()
+        if result:
+            return {"status": True, "message": "User Setting is created",
+                    "data": user_setting}
+
+        return {"status": False, "message": "Cannot create user setting"}
+
+    return {"status": False, "message": "Invalid input"}
+
+
 @mutation.field("createTenant")
 async def resolve_create_tenant(obj: Any, info: GraphQLResolveInfo, **kwargs) \
         -> Dict[str, Union[bool, str, Tenant]]:
@@ -129,7 +156,7 @@ async def resolve_create_tenant_setting(obj: Any, info: GraphQLResolveInfo,
             return {"status": True, "message": "Tenant Setting is created",
                     "data": tenant_setting}
 
-        return {"status": False, "message": "Cannot create tenant setting"}
+        return {"status": False, "message": "Cannot create tenant user_setting"}
 
     return {"status": False, "message": "Invalid input"}
 
@@ -155,31 +182,5 @@ async def resolve_create_tenant_plan(obj: Any, info: GraphQLResolveInfo,
                     "data": tenant_plan}
 
         return {"status": False, "message": "Cannot create tenant plan"}
-
-    return {"status": False, "message": "Invalid input"}
-
-
-@mutation.field("createSetting")
-async def resolve_create_setting(obj: Any,
-                                 info: GraphQLResolveInfo,
-                                 **kwargs) -> Dict[str,
-                                                   Union[bool, str, Setting]]:
-    """
-    Hàm resolve createSetting
-
-    :param obj:
-    :param info:
-    :param kwargs:
-    :return:
-    """
-
-    if kwargs and "input" in kwargs:
-        setting = Setting(**kwargs["input"])
-        result = await setting.commit()
-        if result:
-            return {"status": True, "message": "Setting is created",
-                    "data": setting}
-
-        return {"status": False, "message": "Cannot create setting"}
 
     return {"status": False, "message": "Invalid input"}

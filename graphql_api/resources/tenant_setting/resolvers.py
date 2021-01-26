@@ -4,7 +4,7 @@ from ariadne import ObjectType
 from graphql_api.resources.tenant.models import Tenant
 
 
-# Khởi tạo tenant setting ObjectType
+# Khởi tạo tenant user_setting ObjectType
 tenant_setting = ObjectType("TenantSetting")
 
 

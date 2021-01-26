@@ -39,12 +39,12 @@ from graphql_api.resources.tenant_plan.schema import type_schema \
 from graphql_api.resources.tenant_plan.schema import input_schema \
     as tenant_plan_input_schema
 from graphql_api.resources.tenant_plan.resolvers import tenant_plan
-# Setting Resources
-from graphql_api.resources.setting.schema import type_schema \
-    as setting_type_schema
-from graphql_api.resources.setting.schema import input_schema \
-    as setting_input_schema
-from graphql_api.resources.setting.resolvers import setting
+# UserSetting Resources
+from graphql_api.resources.user_setting.schema import type_schema \
+    as user_setting_type_schema
+from graphql_api.resources.user_setting.schema import input_schema \
+    as user_setting_input_schema
+from graphql_api.resources.user_setting.resolvers import user_setting
 # Commons
 from graphql_api.resources.core.schema import scalar_schema
 from graphql_api.resources.core.scalars import datetime_scalar
@@ -55,12 +55,14 @@ schema = make_executable_schema([query_type_schema, mutation_type_schema,
                                  plan_type_schema, plan_input_schema,
                                  group_type_schema, group_input_schema,
                                  user_type_schema, user_input_schema,
+                                 user_setting_type_schema,
+                                 user_setting_input_schema,
                                  tenant_type_schema, tenant_input_schema,
                                  tenant_setting_type_schema,
                                  tenant_setting_input_schema,
                                  tenant_plan_type_schema,
-                                 tenant_plan_input_schema, scalar_schema,
-                                 setting_type_schema, setting_input_schema],
-                                [query, mutation, plan, group, user, tenant,
-                                 tenant_setting, tenant_plan, setting],
+                                 tenant_plan_input_schema, scalar_schema],
+                                [query, mutation, plan, group, user,
+                                 user_setting, tenant, tenant_setting,
+                                 tenant_plan],
                                 datetime_scalar)

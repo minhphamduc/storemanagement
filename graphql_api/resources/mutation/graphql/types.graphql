@@ -9,5 +9,5 @@ type Mutation {
     createTenant(input: TenantInput!): TenantPayload!
     createTenantSetting(input: TenantSettingInput!): TenantSettingPayload!
     createTenantPlan(input: TenantPlanInput!): TenantPlanPayload!
-    createSetting(input: SettingInput!): SettingPayload!
+    createUserSetting(input: UserSettingInput!): UserSettingPayload!
 }
