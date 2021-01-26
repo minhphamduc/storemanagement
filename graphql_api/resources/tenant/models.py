@@ -1,6 +1,5 @@
 from umongo import Document, fields, validate
 from graphql_api.settings.connects import MONGO_INSTANCE
-from graphql_api.resources.tenant_plan.models import TenantPlan
 
 
 # Đăng ký document Tenant
