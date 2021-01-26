@@ -10,9 +10,8 @@ type User {
     phone: String
     first_name: String
     last_name: String
-    group_id: Group
-    root_id: User
-    is_root: Boolean!
+    group_id: Group!
+    tenant_id: Tenant!
 }
 
 type UserPayload {

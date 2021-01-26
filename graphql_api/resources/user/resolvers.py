@@ -2,7 +2,7 @@ from typing import Any, Optional
 from graphql.type import GraphQLResolveInfo
 from ariadne import ObjectType
 from graphql_api.resources.group.models import Group
-from graphql_api.resources.user.models import User
+from graphql_api.resources.tenant.models import Tenant
 
 
 # Khởi tạo user ObjectType
@@ -50,11 +50,11 @@ async def resolve_group_id(obj: Any, info: GraphQLResolveInfo, **kwargs) \
     return None
 
 
-@user.field("root_id")
-async def resolve_root_id(obj: Any, info: GraphQLResolveInfo, **kwargs) \
-        -> Optional[User]:
+@user.field("tenant_id")
+async def resolve_tenant_id(obj: Any, info: GraphQLResolveInfo, **kwargs) \
+        -> Optional[Tenant]:
     """
-    Hàm resolve root_id
+    Hàm resolve tenant_id
 
     :param obj:
     :param info:
@@ -62,7 +62,7 @@ async def resolve_root_id(obj: Any, info: GraphQLResolveInfo, **kwargs) \
     :return:
     """
 
-    if obj and obj.root_id:
-        return await User.find_one({'_id': obj.root_id})
+    if obj and obj.tenant_id:
+        return await obj.tenant_id.fetch()
 
     return None

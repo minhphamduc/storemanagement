@@ -1,6 +1,7 @@
 from umongo import Document, fields, validate
 from graphql_api.settings.connects import MONGO_INSTANCE
 from graphql_api.resources.group.models import Group
+from graphql_api.resources.tenant.models import Tenant
 
 
 # Đăng ký document User
@@ -32,11 +33,8 @@ class User(Document):
                                    )
     group_id = fields.ReferenceField(required=True,
                                      document=Group)
-    root_id = fields.StringField(validate=[validate.Length(max=255),
-                                           validate.Regexp(r"[a-zA-Z0-9]+")]
-                                 )
-    is_root = fields.BooleanField(required=True, default=False,
-                                  validate=validate.OneOf([True, False]))
+    tenant_id = fields.ReferenceField(required=True,
+                                      document=Tenant)
 
     class Meta:
         collection_name = "user"
