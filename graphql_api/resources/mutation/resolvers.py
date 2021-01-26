@@ -5,6 +5,7 @@ from graphql_api.resources.plan.models import Plan
 from graphql_api.resources.group.models import Group
 from graphql_api.resources.user.models import User
 from graphql_api.resources.tenant.models import Tenant
+from graphql_api.resources.tenant_setting.models import TenantSetting
 from graphql_api.resources.tenant_plan.models import TenantPlan
 from graphql_api.resources.setting.models import Setting
 
@@ -104,6 +105,31 @@ async def resolve_create_tenant(obj: Any, info: GraphQLResolveInfo, **kwargs) \
                     "data": tenant}
 
         return {"status": False, "message": "Cannot create tenant"}
+
+    return {"status": False, "message": "Invalid input"}
+
+
+@mutation.field("createTenantSetting")
+async def resolve_create_tenant_setting(obj: Any, info: GraphQLResolveInfo,
+                                        **kwargs) \
+        -> Dict[str, Union[bool, str, TenantSetting]]:
+    """
+    Hàm resolve createTenantSetting
+
+    :param obj:
+    :param info:
+    :param kwargs:
+    :return:
+    """
+
+    if kwargs and "input" in kwargs:
+        tenant_setting = TenantSetting(**kwargs["input"])
+        result = await tenant_setting.commit()
+        if result:
+            return {"status": True, "message": "Tenant Setting is created",
+                    "data": tenant_setting}
+
+        return {"status": False, "message": "Cannot create tenant setting"}
 
     return {"status": False, "message": "Invalid input"}
 

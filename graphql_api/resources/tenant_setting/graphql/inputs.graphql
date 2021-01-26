@@ -1,0 +1,9 @@
+"""
+Khai báo input
+"""
+
+input TenantSettingInput {
+    key: String!
+    value: String!
+    tenant_id: String!
+}

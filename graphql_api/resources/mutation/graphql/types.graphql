@@ -7,6 +7,7 @@ type Mutation {
     createGroup(input: GroupInput!): GroupPayload!
     createUser(input: UserInput!): UserPayload!
     createTenant(input: TenantInput!): TenantPayload!
+    createTenantSetting(input: TenantSettingInput!): TenantSettingPayload!
     createTenantPlan(input: TenantPlanInput!): TenantPlanPayload!
     createSetting(input: SettingInput!): SettingPayload!
 }

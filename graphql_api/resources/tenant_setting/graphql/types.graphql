@@ -1,0 +1,16 @@
+"""
+Khai báo type
+"""
+
+type TenantSetting {
+    tenant_setting_id: ID!
+    key: String!
+    value: String!
+    tenant_id: Tenant!
+}
+
+type TenantSettingPayload {
+    status: Boolean!
+    message: String!
+    data: TenantSetting
+}

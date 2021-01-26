@@ -6,6 +6,7 @@ from graphql_api.resources.plan.models import Plan
 from graphql_api.resources.group.models import Group
 from graphql_api.resources.user.models import User
 from graphql_api.resources.tenant.models import Tenant
+from graphql_api.resources.tenant_setting.models import TenantSetting
 from graphql_api.resources.tenant_plan.models import TenantPlan
 from graphql_api.resources.setting.models import Setting
 
@@ -93,6 +94,29 @@ async def resolve_tenant(obj: Any, info: GraphQLResolveInfo, **kwargs) \
 
     if 'tenant_id' in kwargs:
         return await Tenant.find_one({'_id': ObjectId(kwargs['tenant_id'])})
+
+    else:
+        return None
+
+
+@query.field("tenant_setting")
+async def resolve_tenant_setting(obj: Any, info: GraphQLResolveInfo, **kwargs) \
+        -> Optional[TenantSetting]:
+    """
+    Hàm resolve tenant setting
+    Tham số query:
+        - tenant_setting_id: ObjectID dạng string
+
+    :param obj:
+    :param info:
+    :param kwargs:
+    :return:
+    """
+
+    if 'tenant_setting_id' in kwargs:
+        return await TenantSetting.find_one(
+            {'_id': ObjectId(kwargs['tenant_setting_id'])}
+        )
 
     else:
         return None

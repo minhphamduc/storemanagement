@@ -7,6 +7,7 @@ type Query {
     group(group_id: String): Group
     user(user_id: String): User
     tenant(tenant_id: String): Tenant
+    tenant_setting(tenant_setting_id: String): TenantSetting
     tenant_plan(tenant_plan_id: String): TenantPlan
     setting(setting_id: String): Setting
 }
