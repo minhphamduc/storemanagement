@@ -2,16 +2,15 @@
 Khai báo type
 """
 
-type UserPlan {
-    user_plan_id: ID!
-    user_id: User!
+type TenantPlan {
+    tenant_plan_id: ID!
     plan_id: Plan!
     start_at: Datetime!
     expire_at: Datetime!
 }
 
-type UserPlanPayload {
+type TenantPlanPayload {
     status: Boolean!
     message: String!
-    data: UserPlan
+    data: TenantPlan
 }

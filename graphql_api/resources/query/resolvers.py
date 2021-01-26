@@ -5,7 +5,7 @@ from ariadne import ObjectType
 from graphql_api.resources.plan.models import Plan
 from graphql_api.resources.group.models import Group
 from graphql_api.resources.user.models import User
-from graphql_api.resources.user_plan.models import UserPlan
+from graphql_api.resources.tenant_plan.models import TenantPlan
 from graphql_api.resources.setting.models import Setting
 
 
@@ -76,13 +76,13 @@ async def resolve_user(obj: Any, info: GraphQLResolveInfo, **kwargs) \
         return None
 
 
-@query.field("user_plan")
-async def resolve_user_plan(obj: Any, info: GraphQLResolveInfo, **kwargs) \
-        -> Optional[UserPlan]:
+@query.field("tenant_plan")
+async def resolve_tenant_plan(obj: Any, info: GraphQLResolveInfo, **kwargs) \
+        -> Optional[TenantPlan]:
     """
-    Hàm resolve user plan
+    Hàm resolve tenant plan
     Tham số query:
-        - user_plan_id: ObjectID dạng string
+        - tenant_plan_id: ObjectID dạng string
 
     :param obj:
     :param info:
@@ -90,9 +90,9 @@ async def resolve_user_plan(obj: Any, info: GraphQLResolveInfo, **kwargs) \
     :return:
     """
 
-    if 'user_plan_id' in kwargs:
-        return await UserPlan.find_one({'_id': ObjectId(
-            kwargs['user_plan_id']
+    if 'tenant_plan_id' in kwargs:
+        return await TenantPlan.find_one({'_id': ObjectId(
+            kwargs['tenant_plan_id']
         )})
 
     else:

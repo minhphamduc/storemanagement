@@ -21,12 +21,12 @@ from graphql_api.resources.user.schema import type_schema \
 from graphql_api.resources.user.schema import input_schema \
     as user_input_schema
 from graphql_api.resources.user.resolvers import user
-# UserPlan Resources
-from graphql_api.resources.user_plan.schema import type_schema \
-    as user_plan_type_schema
-from graphql_api.resources.user_plan.schema import input_schema \
-    as user_plan_input_schema
-from graphql_api.resources.user_plan.resolvers import user_plan
+# TenantPlan Resources
+from graphql_api.resources.tenant_plan.schema import type_schema \
+    as tenant_plan_type_schema
+from graphql_api.resources.tenant_plan.schema import input_schema \
+    as tenant_plan_input_schema
+from graphql_api.resources.tenant_plan.resolvers import tenant_plan
 # Setting Resources
 from graphql_api.resources.setting.schema import type_schema \
     as setting_type_schema
@@ -43,9 +43,9 @@ schema = make_executable_schema([query_type_schema, mutation_type_schema,
                                  plan_type_schema, plan_input_schema,
                                  group_type_schema, group_input_schema,
                                  user_type_schema, user_input_schema,
-                                 user_plan_type_schema, user_plan_input_schema,
-                                 scalar_schema, setting_type_schema,
-                                 setting_input_schema],
-                                [query, mutation, plan, group, user, user_plan,
-                                 setting],
+                                 tenant_plan_type_schema,
+                                 tenant_plan_input_schema, scalar_schema,
+                                 setting_type_schema, setting_input_schema],
+                                [query, mutation, plan, group, user,
+                                 tenant_plan, setting],
                                 datetime_scalar)

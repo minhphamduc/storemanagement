@@ -6,6 +6,6 @@ type Query {
     plan(plan_id: String): Plan
     group(group_id: String): Group
     user(user_id: String): User
-    user_plan(user_plan_id: String): UserPlan
+    tenant_plan(tenant_plan_id: String): TenantPlan
     setting(setting_id: String): Setting
 }

@@ -4,7 +4,7 @@ from ariadne import ObjectType
 from graphql_api.resources.plan.models import Plan
 from graphql_api.resources.group.models import Group
 from graphql_api.resources.user.models import User
-from graphql_api.resources.user_plan.models import UserPlan
+from graphql_api.resources.tenant_plan.models import TenantPlan
 from graphql_api.resources.setting.models import Setting
 
 
@@ -83,12 +83,12 @@ async def resolve_create_user(obj: Any, info: GraphQLResolveInfo, **kwargs) \
     return {"status": False, "message": "Invalid input"}
 
 
-@mutation.field("createUserPlan")
-async def resolve_create_user_plan(obj: Any, info: GraphQLResolveInfo,
-                                   **kwargs) \
-        -> Dict[str, Union[bool, str, UserPlan]]:
+@mutation.field("createTenantPlan")
+async def resolve_create_tenant_plan(obj: Any, info: GraphQLResolveInfo,
+                                     **kwargs) \
+        -> Dict[str, Union[bool, str, TenantPlan]]:
     """
-    Hàm resolve createUserPlan
+    Hàm resolve createTenantPlan
 
     :param obj:
     :param info:
@@ -97,13 +97,13 @@ async def resolve_create_user_plan(obj: Any, info: GraphQLResolveInfo,
     """
 
     if kwargs and "input" in kwargs:
-        user_plan = UserPlan(**kwargs["input"])
-        result = await user_plan.commit()
+        tenant_plan = TenantPlan(**kwargs["input"])
+        result = await tenant_plan.commit()
         if result:
-            return {"status": True, "message": "User Plan is created",
-                    "data": user_plan}
+            return {"status": True, "message": "Tenant Plan is created",
+                    "data": tenant_plan}
 
-        return {"status": False, "message": "Cannot create user plan"}
+        return {"status": False, "message": "Cannot create tenant plan"}
 
     return {"status": False, "message": "Invalid input"}
 
