@@ -1,0 +1,16 @@
+"""
+Khai báo type
+"""
+
+type Tenant {
+    tenant_id: ID!
+    name: String!
+    description: String
+    tenant_plan_id: TenantPlan!
+}
+
+type TenantPayload {
+    status: Boolean!
+    message: String!
+    data: Tenant
+}

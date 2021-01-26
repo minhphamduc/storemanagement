@@ -1,0 +1,9 @@
+"""
+Khai báo input
+"""
+
+input TenantInput {
+    name: String!
+    description: String
+    tenant_plan_id: String!
+}
