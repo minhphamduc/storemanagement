@@ -123,10 +123,11 @@ async def resolve_tenant(obj: Any, info: GraphQLResolveInfo, **kwargs) \
 
 
 @query.field("tenant_setting")
-async def resolve_tenant_setting(obj: Any, info: GraphQLResolveInfo, **kwargs) \
+async def resolve_tenant_setting(obj: Any, info: GraphQLResolveInfo,
+                                 **kwargs) \
         -> Optional[TenantSetting]:
     """
-    Hàm resolve tenant user_setting
+    Hàm resolve tenant setting
     Tham số query:
         - tenant_setting_id: ObjectID dạng string
 

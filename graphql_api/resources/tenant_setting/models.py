@@ -8,7 +8,7 @@ from graphql_api.resources.tenant.models import Tenant
 class TenantSetting(Document):
     """
     Class: TenantSetting
-    Description: Lớp tenant user_setting
+    Description: Lớp tenant setting
     """
 
     key = fields.StringField(required=True,

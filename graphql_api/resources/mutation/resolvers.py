@@ -209,7 +209,7 @@ async def resolve_create_tenant_setting(obj: Any, info: GraphQLResolveInfo,
             return {"status": True, "message": "Tenant Setting is created",
                     "data": tenant_setting}
 
-        return {"status": False, "message": "Cannot create tenant user_setting"}
+        return {"status": False, "message": "Cannot create tenant setting"}
 
     return {"status": False, "message": "Invalid input"}
 
