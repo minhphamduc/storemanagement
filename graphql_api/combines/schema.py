@@ -21,7 +21,7 @@ from graphql_api.resources.user.schema import type_schema \
 from graphql_api.resources.user.schema import input_schema \
     as user_input_schema
 from graphql_api.resources.user.resolvers import user
-# Plan Resources
+# Tenant Resources
 from graphql_api.resources.tenant.schema import type_schema \
     as tenant_type_schema
 from graphql_api.resources.tenant.schema import input_schema \
