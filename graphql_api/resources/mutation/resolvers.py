@@ -1,4 +1,5 @@
 from typing import Any, Dict, Union
+from bson.objectid import ObjectId
 from graphql.type import GraphQLResolveInfo
 from ariadne import ObjectType
 from graphql_api.resources.plan.models import Plan
@@ -74,6 +75,32 @@ async def resolve_create_user(obj: Any, info: GraphQLResolveInfo, **kwargs) \
     """
 
     if kwargs and "input" in kwargs:
+        # Kiểm tra group_id
+        if "group_id" in kwargs["input"].keys() \
+                and kwargs["input"]["group_id"]:
+            group = await Group.find_one(
+                {'_id': ObjectId(kwargs["input"]["group_id"])}
+            )
+            if group is not None:
+                kwargs["input"]["group_id"] = group
+
+            # Trả lỗi nếu group không tồn tại
+            else:
+                return {"status": False, "message": "Group not found"}
+
+        # Kiểm tra tenant_id
+        if "tenant_id" in kwargs["input"].keys() \
+                and kwargs["input"]["tenant_id"]:
+            tenant = await Tenant.find_one(
+                {'_id': ObjectId(kwargs["input"]["tenant_id"])}
+            )
+            if tenant is not None:
+                kwargs["input"]["tenant_id"] = tenant
+
+            # Trả lỗi nếu tenant không tồn tại
+            else:
+                return {"status": False, "message": "Tenant not found"}
+
         user = User(**kwargs["input"])
         result = await user.commit()
         if result:
@@ -101,6 +128,19 @@ async def resolve_create_user_setting(obj: Any,
     """
 
     if kwargs and "input" in kwargs:
+        # Kiểm tra user_id
+        if "user_id" in kwargs["input"].keys() \
+                and kwargs["input"]["user_id"]:
+            user = await User.find_one(
+                {'_id': ObjectId(kwargs["input"]["user_id"])}
+            )
+            if user is not None:
+                kwargs["input"]["user_id"] = user
+
+            # Trả lỗi nếu user không tồn tại
+            else:
+                return {"status": False, "message": "User not found"}
+
         user_setting = UserSetting(**kwargs["input"])
         result = await user_setting.commit()
         if result:
@@ -125,6 +165,19 @@ async def resolve_create_tenant(obj: Any, info: GraphQLResolveInfo, **kwargs) \
     """
 
     if kwargs and "input" in kwargs:
+        # Kiểm tra tenant_plan_id
+        if "tenant_plan_id" in kwargs["input"].keys() \
+                and kwargs["input"]["tenant_plan_id"]:
+            tenant_plan = await TenantPlan.find_one(
+                {'_id': ObjectId(kwargs["input"]["tenant_plan_id"])}
+            )
+            if tenant_plan is not None:
+                kwargs["input"]["tenant_plan_id"] = tenant_plan
+
+            # Trả lỗi nếu tenant plan không tồn tại
+            else:
+                return {"status": False, "message": "Tenant Plan not found"}
+
         tenant = Tenant(**kwargs["input"])
         result = await tenant.commit()
         if result:
@@ -150,6 +203,19 @@ async def resolve_create_tenant_setting(obj: Any, info: GraphQLResolveInfo,
     """
 
     if kwargs and "input" in kwargs:
+        # Kiểm tra tenant_id
+        if "tenant_id" in kwargs["input"].keys() \
+                and kwargs["input"]["tenant_id"]:
+            tenant = await Tenant.find_one(
+                {'_id': ObjectId(kwargs["input"]["tenant_id"])}
+            )
+            if tenant is not None:
+                kwargs["input"]["tenant_id"] = tenant
+
+            # Trả lỗi nếu tenant không tồn tại
+            else:
+                return {"status": False, "message": "Tenant not found"}
+
         tenant_setting = TenantSetting(**kwargs["input"])
         result = await tenant_setting.commit()
         if result:
@@ -175,6 +241,19 @@ async def resolve_create_tenant_plan(obj: Any, info: GraphQLResolveInfo,
     """
 
     if kwargs and "input" in kwargs:
+        # Kiểm tra plan_id
+        if "plan_id" in kwargs["input"].keys() \
+                and kwargs["input"]["plan_id"]:
+            plan = await Plan.find_one(
+                {'_id': ObjectId(kwargs["input"]["plan_id"])}
+            )
+            if plan is not None:
+                kwargs["input"]["plan_id"] = plan
+
+            # Trả lỗi nếu plan không tồn tại
+            else:
+                return {"status": False, "message": "Plan not found"}
+
         tenant_plan = TenantPlan(**kwargs["input"])
         result = await tenant_plan.commit()
         if result:
