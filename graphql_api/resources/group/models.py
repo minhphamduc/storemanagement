@@ -14,12 +14,6 @@ class Group(Document):
                               validate=[validate.Length(max=255),
                                         validate.Regexp(r"[a-zA-Z ']+")]
                               )
-    permission = fields.ListField(
-        fields.StringField(required=True,
-                           validate=validate.OneOf(['read', 'creat',
-                                                    'update', 'delete'])
-                           ),
-        required=True)
 
     class Meta:
         collection_name = "group"
