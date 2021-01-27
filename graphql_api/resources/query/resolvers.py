@@ -10,6 +10,7 @@ from graphql_api.resources.tenant_setting.models import TenantSetting
 from graphql_api.resources.tenant_plan.models import TenantPlan
 from graphql_api.resources.user_setting.models import UserSetting
 from graphql_api.resources.resource.models import Resource
+from graphql_api.resources.resource_permission.models import ResourcePermission
 
 
 # Khởi tạo query ObjectType
@@ -187,6 +188,30 @@ async def resolve_user_setting(obj: Any, info: GraphQLResolveInfo, **kwargs) \
     if 'user_setting_id' in kwargs:
         return await UserSetting.find_one({'_id': ObjectId(
             kwargs['user_setting_id']
+        )})
+
+    else:
+        return None
+
+
+@query.field("resource_permission")
+async def resolve_resource_permission(obj: Any, info: GraphQLResolveInfo,
+                                      **kwargs) \
+        -> Optional[ResourcePermission]:
+    """
+    Hàm resolve resource_permission
+    Tham số query:
+        - resource_permission_id: ObjectID dạng string
+
+    :param obj:
+    :param info:
+    :param kwargs:
+    :return:
+    """
+
+    if 'resource_permission_id' in kwargs:
+        return await ResourcePermission.find_one({'_id': ObjectId(
+            kwargs['resource_permission_id']
         )})
 
     else:

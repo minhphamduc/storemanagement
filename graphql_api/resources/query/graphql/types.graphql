@@ -11,4 +11,5 @@ type Query {
     group(group_id: String): Group
     user(user_id: String): User
     user_setting(user_setting_id: String): UserSetting
+    resource_permission(resource_permission_id: String): ResourcePermission
 }

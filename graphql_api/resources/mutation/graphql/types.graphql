@@ -11,4 +11,5 @@ type Mutation {
     createGroup(input: GroupInput!): GroupPayload!
     createUser(input: UserInput!): UserPayload!
     createUserSetting(input: UserSettingInput!): UserSettingPayload!
+    createResourcePermission(input: ResourcePermissionInput!): ResourcePermissionPayload!
 }

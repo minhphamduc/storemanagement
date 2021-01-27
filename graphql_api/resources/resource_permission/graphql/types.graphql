@@ -1,0 +1,18 @@
+"""
+Khai báo type
+"""
+
+type ResourcePermission {
+    resource_permission_id: ID!
+    resource_id: Resource!
+    permission: [String!]!
+    user_id: User
+    group_id: Group
+    tenant_id: Tenant
+}
+
+type ResourcePermissionPayload {
+    status: Boolean!
+    message: String!
+    data: ResourcePermission
+}

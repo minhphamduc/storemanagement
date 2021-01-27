@@ -10,6 +10,7 @@ from graphql_api.resources.tenant_setting.models import TenantSetting
 from graphql_api.resources.tenant_plan.models import TenantPlan
 from graphql_api.resources.user_setting.models import UserSetting
 from graphql_api.resources.resource.models import Resource
+from graphql_api.resources.resource_permission.models import ResourcePermission
 
 
 # Khởi tạo mutation ObjectType
@@ -335,5 +336,89 @@ async def resolve_create_user_setting(obj: Any,
                     "data": user_setting}
 
         return {"status": False, "message": "Cannot create user setting"}
+
+    return {"status": False, "message": "Input is empty"}
+
+
+@mutation.field("createResourcePermission")
+async def resolve_create_resource_permission(obj: Any,
+                                             info: GraphQLResolveInfo,
+                                             **kwargs) \
+        -> Dict[str, Union[bool, str, ResourcePermission]]:
+    """
+    Hàm resolve createResourcePermission
+
+    :param obj:
+    :param info:
+    :param kwargs:
+    :return:
+    """
+
+    if kwargs and "input" in kwargs:
+        # Kiểm tra resource_id
+        if "resource_id" in kwargs["input"].keys() \
+                and kwargs["input"]["resource_id"]:
+            resource = await Resource.find_one(
+                {'_id': ObjectId(kwargs["input"]["resource_id"])}
+            )
+            if resource is not None:
+                kwargs["input"]["resource_id"] = resource
+
+            # Trả lỗi nếu resource không tồn tại
+            else:
+                return {"status": False, "message": "Resource not found"}
+
+        # Kiểm tra user_id
+        if "user_id" in kwargs["input"].keys() \
+                and kwargs["input"]["user_id"]:
+            user = await User.find_one(
+                {'_id': ObjectId(kwargs["input"]["user_id"])}
+            )
+            if user is not None:
+                kwargs["input"]["user_id"] = user
+
+            # Trả lỗi nếu user không tồn tại
+            else:
+                return {"status": False, "message": "User not found"}
+
+        # Kiểm tra group_id
+        if "group_id" in kwargs["input"].keys() \
+                and kwargs["input"]["group_id"]:
+            group = await Group.find_one(
+                {'_id': ObjectId(kwargs["input"]["group_id"])}
+            )
+            if group is not None:
+                kwargs["input"]["group_id"] = group
+
+            # Trả lỗi nếu group không tồn tại
+            else:
+                return {"status": False, "message": "Group not found"}
+
+        # Kiểm tra tenant_id
+        if "tenant_id" in kwargs["input"].keys() \
+                and kwargs["input"]["tenant_id"]:
+            tenant = await Tenant.find_one(
+                {'_id': ObjectId(kwargs["input"]["tenant_id"])}
+            )
+            if tenant is not None:
+                kwargs["input"]["tenant_id"] = tenant
+
+            # Trả lỗi nếu tenant không tồn tại
+            else:
+                return {"status": False, "message": "Tenant not found"}
+
+        # Validate dữ liệu
+        try:
+            resource_permission = ResourcePermission(**kwargs["input"])
+
+        except TypeError:
+            return {"status": False, "message": "Invalid input"}
+
+        result = await resource_permission.commit()
+        if result:
+            return {"status": True, "message": "Resource Permission is created",
+                    "data": resource_permission}
+
+        return {"status": False, "message": "Cannot create resource permission"}
 
     return {"status": False, "message": "Input is empty"}
