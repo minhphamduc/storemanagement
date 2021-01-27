@@ -4,5 +4,6 @@ Khai báo input
 
 input TenantPlanInput {
     plan_id: String!
+    tenant_id: String!
     start_at: String!
 }
