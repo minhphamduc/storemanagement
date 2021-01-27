@@ -1,7 +1,6 @@
 from typing import Any, Optional
 from graphql.type import GraphQLResolveInfo
 from ariadne import ObjectType
-from graphql_api.resources.tenant_plan.models import TenantPlan
 
 
 # Khởi tạo tenant ObjectType
