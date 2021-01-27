@@ -9,6 +9,7 @@ from graphql_api.resources.tenant.models import Tenant
 from graphql_api.resources.tenant_setting.models import TenantSetting
 from graphql_api.resources.tenant_plan.models import TenantPlan
 from graphql_api.resources.user_setting.models import UserSetting
+from graphql_api.resources.resource.models import Resource
 
 
 # Khởi tạo mutation ObjectType
@@ -303,5 +304,36 @@ async def resolve_create_tenant_plan(obj: Any, info: GraphQLResolveInfo,
                     "data": tenant_plan}
 
         return {"status": False, "message": "Cannot create tenant plan"}
+
+    return {"status": False, "message": "Invalid input"}
+
+
+@mutation.field("createResource")
+async def resolve_create_resource(obj: Any, info: GraphQLResolveInfo,
+                                  **kwargs) \
+        -> Dict[str, Union[bool, str, Resource]]:
+    """
+    Hàm resolve createResource
+
+    :param obj:
+    :param info:
+    :param kwargs:
+    :return:
+    """
+
+    if kwargs and "input" in kwargs:
+        # Validate dữ liệu
+        try:
+            resource = Resource(**kwargs["input"])
+
+        except TypeError:
+            return {"status": False, "message": "Invalid input"}
+
+        result = await resource.commit()
+        if result:
+            return {"status": True, "message": "Resource is created",
+                    "data": resource}
+
+        return {"status": False, "message": "Cannot create resource"}
 
     return {"status": False, "message": "Invalid input"}

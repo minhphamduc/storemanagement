@@ -45,6 +45,12 @@ from graphql_api.resources.user_setting.schema import type_schema \
 from graphql_api.resources.user_setting.schema import input_schema \
     as user_setting_input_schema
 from graphql_api.resources.user_setting.resolvers import user_setting
+# Resource Resources
+from graphql_api.resources.resource.schema import type_schema \
+    as resource_type_schema
+from graphql_api.resources.resource.schema import input_schema \
+    as resource_input_schema
+from graphql_api.resources.resource.resolvers import resource
 # Commons
 from graphql_api.resources.core.schema import scalar_schema
 from graphql_api.resources.core.scalars import datetime_scalar
@@ -61,8 +67,9 @@ schema = make_executable_schema([query_type_schema, mutation_type_schema,
                                  tenant_setting_type_schema,
                                  tenant_setting_input_schema,
                                  tenant_plan_type_schema,
-                                 tenant_plan_input_schema, scalar_schema],
+                                 tenant_plan_input_schema, resource_type_schema,
+                                 resource_input_schema, scalar_schema],
                                 [query, mutation, plan, group, user,
                                  user_setting, tenant, tenant_setting,
-                                 tenant_plan],
+                                 tenant_plan, resource],
                                 datetime_scalar)

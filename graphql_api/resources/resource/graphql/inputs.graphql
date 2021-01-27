@@ -1,0 +1,7 @@
+"""
+Khai báo input
+"""
+
+input ResourceInput {
+    name: String!
+}

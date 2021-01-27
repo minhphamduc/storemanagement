@@ -10,4 +10,5 @@ type Query {
     tenant_setting(tenant_setting_id: String): TenantSetting
     tenant_plan(tenant_plan_id: String): TenantPlan
     user_setting(user_setting_id: String): UserSetting
+    resource(resource_id: String): Resource
 }

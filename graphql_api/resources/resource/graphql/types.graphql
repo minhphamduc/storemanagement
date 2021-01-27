@@ -1,0 +1,14 @@
+"""
+Khai báo type
+"""
+
+type Resource {
+    resource_id: ID!
+    name: String!
+}
+
+type ResourcePayload {
+    status: Boolean!
+    message: String!
+    data: Resource
+}
