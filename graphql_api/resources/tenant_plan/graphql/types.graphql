@@ -5,6 +5,7 @@ Khai báo type
 type TenantPlan {
     tenant_plan_id: ID!
     plan_id: Plan!
+    tenant_id: Tenant!
     start_at: Datetime!
     expire_at: Datetime!
 }
