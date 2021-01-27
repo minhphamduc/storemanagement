@@ -3,12 +3,12 @@ Khai báo type
 """
 
 type Query {
-    plan(plan_id: String): Plan
-    group(group_id: String): Group
-    user(user_id: String): User
+    resource(resource_id: String): Resource
     tenant(tenant_id: String): Tenant
     tenant_setting(tenant_setting_id: String): TenantSetting
+    plan(plan_id: String): Plan
     tenant_plan(tenant_plan_id: String): TenantPlan
+    group(group_id: String): Group
+    user(user_id: String): User
     user_setting(user_setting_id: String): UserSetting
-    resource(resource_id: String): Resource
 }
