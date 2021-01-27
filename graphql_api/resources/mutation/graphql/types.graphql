@@ -3,12 +3,12 @@ Khai báo type
 """
 
 type Mutation {
-    createPlan(input: PlanInput!): PlanPayload!
-    createGroup(input: GroupInput!): GroupPayload!
-    createUser(input: UserInput!): UserPayload!
+    createResource(input: ResourceInput!): ResourcePayload!
     createTenant(input: TenantInput!): TenantPayload!
     createTenantSetting(input: TenantSettingInput!): TenantSettingPayload!
+    createPlan(input: PlanInput!): PlanPayload!
     createTenantPlan(input: TenantPlanInput!): TenantPlanPayload!
+    createGroup(input: GroupInput!): GroupPayload!
+    createUser(input: UserInput!): UserPayload!
     createUserSetting(input: UserSettingInput!): UserSettingPayload!
-    createResource(input: ResourceInput!): ResourcePayload!
 }
