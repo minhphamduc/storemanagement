@@ -28,7 +28,13 @@ async def resolve_create_plan(obj: Any, info: GraphQLResolveInfo, **kwargs) \
     """
 
     if kwargs and "input" in kwargs:
-        plan = Plan(**kwargs["input"])
+        # Validate dữ liệu
+        try:
+            plan = Plan(**kwargs["input"])
+
+        except TypeError:
+            return {"status": False, "message": "Invalid input"}
+
         result = await plan.commit()
         if result:
             return {"status": True, "message": "Plan is created", "data": plan}
@@ -51,7 +57,13 @@ async def resolve_create_group(obj: Any, info: GraphQLResolveInfo, **kwargs) \
     """
 
     if kwargs and "input" in kwargs:
-        group = Group(**kwargs["input"])
+        # Validate dữ liệu
+        try:
+            group = Group(**kwargs["input"])
+
+        except TypeError:
+            return {"status": False, "message": "Invalid input"}
+
         result = await group.commit()
         if result:
             return {"status": True, "message": "Group is created",
@@ -101,7 +113,13 @@ async def resolve_create_user(obj: Any, info: GraphQLResolveInfo, **kwargs) \
             else:
                 return {"status": False, "message": "Tenant not found"}
 
-        user = User(**kwargs["input"])
+        # Validate dữ liệu
+        try:
+            user = User(**kwargs["input"])
+
+        except TypeError:
+            return {"status": False, "message": "Invalid input"}
+
         result = await user.commit()
         if result:
             return {"status": True, "message": "User is created",
@@ -141,7 +159,13 @@ async def resolve_create_user_setting(obj: Any,
             else:
                 return {"status": False, "message": "User not found"}
 
-        user_setting = UserSetting(**kwargs["input"])
+        # Validate dữ liệu
+        try:
+            user_setting = UserSetting(**kwargs["input"])
+
+        except TypeError:
+            return {"status": False, "message": "Invalid input"}
+
         result = await user_setting.commit()
         if result:
             return {"status": True, "message": "User Setting is created",
@@ -165,7 +189,13 @@ async def resolve_create_tenant(obj: Any, info: GraphQLResolveInfo, **kwargs) \
     """
 
     if kwargs and "input" in kwargs:
-        tenant = Tenant(**kwargs["input"])
+        # Validate dữ liệu
+        try:
+            tenant = Tenant(**kwargs["input"])
+
+        except TypeError:
+            return {"status": False, "message": "Invalid input"}
+
         result = await tenant.commit()
         if result:
             return {"status": True, "message": "Tenant is created",
@@ -203,7 +233,13 @@ async def resolve_create_tenant_setting(obj: Any, info: GraphQLResolveInfo,
             else:
                 return {"status": False, "message": "Tenant not found"}
 
-        tenant_setting = TenantSetting(**kwargs["input"])
+        # Validate dữ liệu
+        try:
+            tenant_setting = TenantSetting(**kwargs["input"])
+
+        except TypeError:
+            return {"status": False, "message": "Invalid input"}
+
         result = await tenant_setting.commit()
         if result:
             return {"status": True, "message": "Tenant Setting is created",
@@ -254,7 +290,13 @@ async def resolve_create_tenant_plan(obj: Any, info: GraphQLResolveInfo,
             else:
                 return {"status": False, "message": "Tenant not found"}
 
-        tenant_plan = TenantPlan(**kwargs["input"])
+        # Validate dữ liệu
+        try:
+            tenant_plan = TenantPlan(**kwargs["input"])
+
+        except TypeError:
+            return {"status": False, "message": "Invalid input"}
+
         result = await tenant_plan.commit()
         if result:
             return {"status": True, "message": "Tenant Plan is created",
